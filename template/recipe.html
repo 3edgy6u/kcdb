@@ -1,0 +1,43 @@
+<table ng-show="main">
+    <tr>
+        <th>Recipe</th>
+        <th>Fuel</th>
+        <th>Ammo</th>
+        <th>Steel</th>
+        <th>Bauxite</th>
+        <th>DevMats</th>
+        <th>Trials</th>
+    </tr>
+    <tr ng-repeat="recipe in data.recipes">
+        <td ng-show="recipe.fuel>999">
+            <a href="#recipe/{{recipe.fuel}}-{{recipe.ammo}}-{{recipe.steel}}-{{recipe.bauxite}}-{{recipe.devmats}}">
+            {{recipe.fuel}}-{{recipe.ammo}}-{{recipe.steel}}-{{recipe.bauxite}}-{{recipe.devmats}}
+            </a>
+        </td>
+        <td ng-hide="recipe.fuel>999">
+            <a href="#recipe/{{recipe.fuel}}-{{recipe.ammo}}-{{recipe.steel}}-{{recipe.bauxite}}">
+            {{recipe.fuel}}-{{recipe.ammo}}-{{recipe.steel}}-{{recipe.bauxite}}
+            </a>
+        </td>
+        <td>{{recipe.fuel}}</td>
+        <td>{{recipe.ammo}}</td>
+        <td>{{recipe.steel}}</td>
+        <td>{{recipe.bauxite}}</td>
+        <td>{{recipe.devmats}}</td>
+        <td>{{recipe.total}}</td>
+    </tr>
+</table>
+<table ng-show="!main">
+    <tr>
+        <th>Ship</th>
+        <th>Type</th>
+        <th>Count</th>
+        <th>Percentage</th>
+    </tr>
+    <tr ng-repeat="ship in data.ships">
+        <td><a href="#ship/{{ship.name | lowercase}}">{{ship.name}} ({{ship.japanese}})</a></td>
+        <td>{{ship.type}}</td>
+        <td>{{ship.count}}</td>
+        <td>{{ship.count / data.total * 100 | number:2}}%</td>
+    </tr>
+</table>
